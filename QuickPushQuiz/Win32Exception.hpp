@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "Number.hpp"
 #include <Windows.h>
 #include <stdexcept>

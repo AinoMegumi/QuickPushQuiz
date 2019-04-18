@@ -1,4 +1,4 @@
-#include "DirectXException.hpp"
+﻿#include "DirectXException.hpp"
 #include <DxErr.h>
 #include <string>
 #pragma comment(lib, "dxerr.lib")
