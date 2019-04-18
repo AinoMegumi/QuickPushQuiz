@@ -11,4 +11,3 @@ public:
 		: rand(MinWaitTime, MaxWaitTime), RndEng(RandEngine) {}
 	unsigned long long ComputerAnswerTime::Generate() const { return this->rand(this->RndEng.get()); }
 };
-
