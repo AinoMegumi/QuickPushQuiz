@@ -37,61 +37,89 @@ namespace standard {
 		}
 	public:
 		number() = default;
-		constexpr number(const T& num, const T max, const T min) : n(clamp(num, min, max)), maximum(max), minimum(min) {}
-		constexpr number(const T num) : number(num, std::numeric_limits<T>::max(), std::numeric_limits<T>::min()) {}
-		constexpr number operator + (const number& num) const { return number(this->n + num.n, this->maximum, this->minimum); }
-		constexpr number operator - (const number& num) const { return number(this->n - num.n, this->maximum, this->minimum); }
-		constexpr number operator * (const number& num) const { return number(this->n * num.n, this->maximum, this->minimum); }
-		constexpr number operator / (const number& num) const { 
-			return num.n != 0
-				? number(this->n / num.n, this->maximum, this->minimum) 
+		template<typename U = T, std::enable_if_t<std::is_arithmetic<U>::value, std::nullptr_t> = nullptr>
+		constexpr number(const U& num, const U max, const U min) 
+			: n(clamp(static_cast<T>(num), static_cast<T>(min), static_cast<T>(max))), maximum(static_cast<T>(max)), minimum(static_cast<T>(min)) {}
+		template<typename U = T, std::enable_if_t<std::is_arithmetic<U>::value, std::nullptr_t> = nullptr>
+		constexpr number(const U num) : number(static_cast<T>(num), std::numeric_limits<T>::max(), std::numeric_limits<T>::min()) {}
+		template<typename U = T, std::enable_if_t<std::is_arithmetic<U>::value, std::nullptr_t> = nullptr>
+		constexpr number operator + (const number<U>& num) const { return number(this->n + num.Get<T>(), this->maximum, this->minimum); }
+		template<typename U = T, std::enable_if_t<std::is_arithmetic<U>::value, std::nullptr_t> = nullptr>
+		constexpr number operator - (const number<U>& num) const { return number(this->n - num.Get<T>(), this->maximum, this->minimum); }
+		template<typename U = T, std::enable_if_t<std::is_arithmetic<U>::value, std::nullptr_t> = nullptr>
+		constexpr number operator * (const number<U>& num) const { return number(this->n * num.Get<T>(), this->maximum, this->minimum); }
+		template<typename U = T, std::enable_if_t<std::is_arithmetic<U>::value, std::nullptr_t> = nullptr>
+		constexpr number operator / (const number<U>& num) const {
+			return num.Get<T>() != 0
+				? number(this->n / num.Get<T>(), this->maximum, this->minimum) 
 				: throw std::runtime_error("Divide value is 0");
 		}
-		constexpr number operator & (const number& num) const { return number(this->n & num.n, this->maximum, this->minimum); }
-		constexpr number operator % (const number& num) const {
-			return num.n != 0
-				? number(this->n % num.n, this->maximum, this->minimum)
+		template<typename U = T, std::enable_if_t<std::is_arithmetic<U>::value, std::nullptr_t> = nullptr>
+		constexpr number operator & (const number<U>& num) const { return number(this->n & num.Get<T>(), this->maximum, this->minimum); }
+		template<typename U = T, std::enable_if_t<std::is_arithmetic<U>::value, std::nullptr_t> = nullptr>
+		constexpr number operator % (const number<U>& num) const {
+			return num.Get<T>() != 0
+				? number(this->n % num.Get<T>(), this->maximum, this->minimum)
 				: throw std::runtime_error("Divide value is 0"); 
 		}
-		constexpr number operator | (const number& num) const { return number(this->n | num.n, this->maximum, this->minimum); }
-		constexpr number operator ^ (const number& num) const { return number(this->n ^ num.n, this->maximum, this->minimum); }
-		constexpr number operator << (const number& num) const { return number(this->n << num.n, this->maximum, this->minimum); }
-		constexpr number operator >> (const number& num) const { return number(this->n >> num.n, this->maximum, this->minimum); }
-		number operator += (const number& num) { this->n = this->cmp(this->n + num.n); return *this; }
+		template<typename U = T, std::enable_if_t<std::is_arithmetic<U>::value, std::nullptr_t> = nullptr>
+		constexpr number operator | (const number<U>& num) const { return number(this->n | num.Get<T>(), this->maximum, this->minimum); }
+		template<typename U = T, std::enable_if_t<std::is_arithmetic<U>::value, std::nullptr_t> = nullptr>
+		constexpr number operator ^ (const number<U>& num) const { return number(this->n ^ num.Get<T>(), this->maximum, this->minimum); }
+		template<typename U = T, std::enable_if_t<std::is_arithmetic<U>::value, std::nullptr_t> = nullptr>
+		constexpr number operator << (const number<U>& num) const { return number(this->n << num.Get<T>(), this->maximum, this->minimum); }
+		template<typename U = T, std::enable_if_t<std::is_arithmetic<U>::value, std::nullptr_t> = nullptr>
+		constexpr number operator >> (const number<U>& num) const { return number(this->n >> num.Get<T>(), this->maximum, this->minimum); }
+		template<typename U = T, std::enable_if_t<std::is_arithmetic<U>::value, std::nullptr_t> = nullptr>
+		number operator += (const number<U>& num) { this->n = this->cmp(this->n + num.Get<T>()); return *this; }
 		number& operator ++ () { this->n = this->cmp(this->n + 1); return *this; }
-		number operator ++ (int) { 
+		number operator ++ (int) {
 			const auto t = *this;
 			this->n = this->cmp(this->n + 1); 
 			return t;
 		}
-		number operator -= (const number& num) { this->n = this->cmp(this->n - num.n); return *this; }
+		template<typename U = T, std::enable_if_t<std::is_arithmetic<U>::value, std::nullptr_t> = nullptr>
+		number operator -= (const number<U>& num) { this->n = this->cmp(this->n - num.Get<T>()); return *this; }
 		number& operator -- () { this->n = this->cmp(this->n - 1); return *this; }
 		number operator -- (int) { 
 			const auto t = *this;
 			this->n = this->cmp(this->n - 1);
 			return t;
 		}
-		number operator *= (const number& num) { this->n = this->cmp(this->n = num.n); return *this; }
-		number operator /= (const number& num) { 
-			if (num.n == 0) throw std::runtime_error("Divide value is 0");
-			this->n = this->cmp(this->n = num.n); 
+		template<typename U = T, std::enable_if_t<std::is_arithmetic<U>::value, std::nullptr_t> = nullptr>
+		number operator *= (const number<U>& num) { this->n = this->cmp(this->n = num.Get<T>()); return *this; }
+		template<typename U = T, std::enable_if_t<std::is_arithmetic<U>::value, std::nullptr_t> = nullptr>
+		number operator /= (const number<U>& num) {
+			if (num.Get<T>() == 0) throw std::runtime_error("Divide value is 0");
+			this->n = this->cmp(this->n = num.Get<T>()); 
 			return *this;
 		}
-		number operator &= (const number& num) { this->n = this->cmp(this->n & num.n); return *this; }
-		number operator %= (const number& num) { 
-			if (num.n == 0) throw std::runtime_error("Divide value is 0");
-			this->n = this->cmp(this->n % num.n);
+		template<typename U = T, std::enable_if_t<std::is_arithmetic<U>::value, std::nullptr_t> = nullptr>
+		number operator &= (const number<U>& num) { this->n = this->cmp(this->n & num.Get<T>()); return *this; }
+		template<typename U = T, std::enable_if_t<std::is_arithmetic<U>::value, std::nullptr_t> = nullptr>
+		number operator %= (const number<U>& num) {
+			if (num.Get<T>() == 0) throw std::runtime_error("Divide value is 0");
+			this->n = this->cmp(this->n % num.Get<T>());
 			return *this;
 		}
-		number operator |= (const number& num) { this->n = this->cmp(this->n | num.n); return *this; }
-		number operator <<= (const number& num) { this->n = this->cmp(this->n << num.n); return *this; }
-		number operator >>= (const number& num) { this->n = this->cmp(this->n >> num.n); return *this; }
-		constexpr bool operator == (const number& num) const { return this->n == num.n; }
-		constexpr bool operator != (const number& num) const { return this->n != num.n; }
-		constexpr bool operator <  (const number& num) const { return this->n < num.n; }
-		constexpr bool operator <= (const number& num) const { return this->n <= num.n; }
-		constexpr bool operator >  (const number& num) const { return this->n > num.n; }
-		constexpr bool operator >= (const number& num) const { return this->n >= num.n; }
+		template<typename U = T, std::enable_if_t<std::is_arithmetic<U>::value, std::nullptr_t> = nullptr>
+		number operator |= (const number<U>& num) { this->n = this->cmp(this->n | num.Get<T>()); return *this; }
+		template<typename U = T, std::enable_if_t<std::is_arithmetic<U>::value, std::nullptr_t> = nullptr>
+		number operator <<= (const number<U>& num) { this->n = this->cmp(this->n << num.Get<T>()); return *this; }
+		template<typename U = T, std::enable_if_t<std::is_arithmetic<U>::value, std::nullptr_t> = nullptr>
+		number operator >>= (const number<U>& num) { this->n = this->cmp(this->n >> num.Get<T>()); return *this; }
+		template<typename U = T, std::enable_if_t<std::is_arithmetic<U>::value, std::nullptr_t> = nullptr>
+		constexpr bool operator == (const number<U>& num) const { return this->n == num.Get<T>(); }
+		template<typename U = T, std::enable_if_t<std::is_arithmetic<U>::value, std::nullptr_t> = nullptr>
+		constexpr bool operator != (const number<U>& num) const { return this->n != num.Get<T>(); }
+		template<typename U = T, std::enable_if_t<std::is_arithmetic<U>::value, std::nullptr_t> = nullptr>
+		constexpr bool operator <  (const number<U>& num) const { return this->n < num.Get<T>(); }
+		template<typename U = T, std::enable_if_t<std::is_arithmetic<U>::value, std::nullptr_t> = nullptr>
+		constexpr bool operator <= (const number<U>& num) const { return this->n <= num.Get<T>(); }
+		template<typename U = T, std::enable_if_t<std::is_arithmetic<U>::value, std::nullptr_t> = nullptr>
+		constexpr bool operator >  (const number<U>& num) const { return this->n > num.Get<T>(); }
+		template<typename U = T, std::enable_if_t<std::is_arithmetic<U>::value, std::nullptr_t> = nullptr>
+		constexpr bool operator >= (const number<U>& num) const { return this->n >= num.Get<T>(); }
 		template<typename U, std::enable_if_t<std::is_arithmetic<U>::value, std::nullptr_t> = nullptr>
 		operator number<U>() {
 			return number<U>(
@@ -101,11 +129,14 @@ namespace standard {
 				);
 		}
 		// 現在値を取得する
-		constexpr T Get() const noexcept { return this->n; }
+		template<typename U = T, std::enable_if_t<std::is_arithmetic<U>::value, std::nullptr_t> = nullptr>
+		constexpr U Get() const noexcept { return static_cast<U>(this->n); }
 		// 設定されている現在の最大値を取得する
-		constexpr T GetMax() const noexcept { return this->maximum; }
+		template<typename U = T, std::enable_if_t<std::is_arithmetic<U>::value, std::nullptr_t> = nullptr>
+		constexpr U GetMax() const noexcept { return static_cast<U>(this->maximum); }
 		// 設定されている現在の最大値を取得する
-		constexpr T GetMin() const noexcept { return this->minimum; }
+		template<typename U = T, std::enable_if_t<std::is_arithmetic<U>::value, std::nullptr_t> = nullptr>
+		constexpr U GetMin() const noexcept { return static_cast<U>(this->minimum); }
 		// 現在値を指定された値に変更する
 		void ChangeCurrentNumToReserevedNum(const T num) { this->n = num; }
 		// 最大値を指定された値に変更する
