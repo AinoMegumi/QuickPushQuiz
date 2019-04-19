@@ -37,8 +37,9 @@ namespace standard {
 		}
 	public:
 		number() = default;
-		template<typename U = T, std::enable_if_t<std::is_arithmetic<U>::value, std::nullptr_t> = nullptr>
-		constexpr number(const U& num, const U max, const U min) 
+		template<typename DefaultVal = T, typename MaxVal = T, typename MinVal = T,
+			std::enable_if_t<std::is_arithmetic<DefaultVal>::value && std::is_arithmetic<MaxVal>::value && std::is_arithmetic<MinVal>::value, std::nullptr_t> = nullptr>
+		constexpr number(const DefaultVal& num, const MaxVal max, const MinVal min) 
 			: n(clamp(static_cast<T>(num), static_cast<T>(min), static_cast<T>(max))), maximum(static_cast<T>(max)), minimum(static_cast<T>(min)) {}
 		template<typename U = T, std::enable_if_t<std::is_arithmetic<U>::value, std::nullptr_t> = nullptr>
 		constexpr number(const U num) : number(static_cast<T>(num), std::numeric_limits<T>::max(), std::numeric_limits<T>::min()) {}
