@@ -157,12 +157,14 @@
   <ItemGroup>
     <ClCompile Include="DirectXException.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="QuizData.cpp" />
     <ClCompile Include="Win32Exception.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ComputerAnswerTime.hpp" />
     <ClInclude Include="DirectXException.hpp" />
     <ClInclude Include="Number.hpp" />
+    <ClInclude Include="QuizData.hpp" />
     <ClInclude Include="Win32Exception.hpp" />
   </ItemGroup>
   <ItemGroup>
