@@ -161,6 +161,7 @@
     <ClCompile Include="Win32Exception.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ComputerAnswer.hpp" />
     <ClInclude Include="ComputerAnswerTime.hpp" />
     <ClInclude Include="DirectXException.hpp" />
     <ClInclude Include="Number.hpp" />
