@@ -169,6 +169,7 @@
     <ClInclude Include="Win32Exception.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="HandleManager.hpp" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
