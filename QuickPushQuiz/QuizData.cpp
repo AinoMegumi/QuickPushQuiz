@@ -1,4 +1,4 @@
-#include "QuizData.hpp"
+﻿#include "QuizData.hpp"
 #include "HandleManager.hpp"
 #include <rapidjson/document.h>
 
