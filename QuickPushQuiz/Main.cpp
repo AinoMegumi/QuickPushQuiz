@@ -1,8 +1,7 @@
 ﻿#include <Windows.h>
 #include <stdexcept>
 
-int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPSTR lpCmdLine, _In_ int CmdShow) {
-	MSG msg{};
+int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
 	try {
 		const HRESULT hr = CoInitialize(nullptr);
 		
@@ -11,5 +10,4 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 
 	}
 	CoUninitialize();
-	return static_cast<int>(msg.wParam);
 }
