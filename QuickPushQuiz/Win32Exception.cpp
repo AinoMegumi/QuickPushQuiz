@@ -12,6 +12,8 @@ std::string GetErrorMessage(const DWORD ErrorCode) {
 	return s;
 }
 
+Win32Exception::Win32Exception() : Win32Exception(standard::number<DWORD>(GetLastError())) {}
+
 Win32Exception::Win32Exception(const standard::number<DWORD>& ErrorCode)
 	: std::exception(GetErrorMessage(ErrorCode.Get()).c_str()) {}
 
