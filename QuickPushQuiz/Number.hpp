@@ -13,14 +13,14 @@
 #endif
 
 namespace standard {
-#if _MSC_VER <= 1900
+#if _HAS_CXX17 == 0
 	template<typename T, class Compare> constexpr const T& clamp(const T& v, const T& lo, const T& hi, Compare comp) {
 		return  assert(!comp(hi, lo)),
 			comp(v, lo) ? lo : comp(hi, v) ? hi : v;
 	}
 #endif
 	template<class T> constexpr const T& clamp(const T& v, const T& lo, const T& hi) {
-#if _MSC_VER <= 1900
+#if _HAS_CXX17 == 0
 		return standard::clamp(v, lo, hi, std::less<>());
 #else
 		return std::clamp(v, lo, hi);
