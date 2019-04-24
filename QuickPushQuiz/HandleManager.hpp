@@ -3,14 +3,16 @@
 #include <functional>
 typedef void (*ReleaseFunc)(HANDLE);
 
-template<ReleaseFunc release = [](HANDLE handle) { CloseHandle(handle); } >
 class HandleManager {
 private:
 	HANDLE handle;
+	ReleaseFunc ReleaseFunction;
 public:
-	HandleManager() = default;
-	HandleManager(const HANDLE& HandleData) : handle(HandleData) {}
-	~HandleManager() { release(this->handle); }
+	HandleManager(const ReleaseFunc& release = [](HANDLE handle) { CloseHandle(handle); })
+		: handle(), ReleaseFunction(release) {}
+	HandleManager(const HANDLE& HandleData, const ReleaseFunc& release = [](HANDLE handle) { CloseHandle(handle); }) 
+		: handle(HandleData), ReleaseFunction(release) {}
+	~HandleManager() { this->ReleaseFunction(this->handle); }
 	HandleManager(const HandleManager&) = delete;
 	HandleManager(HandleManager&&) = default;
 	HandleManager& operator = (const HandleManager&) = delete;
@@ -23,7 +25,5 @@ public:
 	HANDLE& Get() { return this->handle; }
 };
 
-template<ReleaseFunc release = [](HANDLE handle) { CloseHandle(handle); } >
-bool operator == (const HANDLE& a, const HandleManager<release>& b) { return a == b.Get(); }
-template<ReleaseFunc release = [](HANDLE handle) { CloseHandle(handle); } >
-bool operator != (const HANDLE & a, const HandleManager<release> & b) { return a != b.Get(); }
+bool operator == (const HANDLE& a, const HandleManager& b) { return a == b.Get(); }
+bool operator != (const HANDLE & a, const HandleManager & b) { return a != b.Get(); }

@@ -5,7 +5,8 @@
 QuizData::QuizData(const std::string& FilePath) {
 	rapidjson::Document doc{};
 	doc.Parse(FilePath.c_str());
-	if (const bool error = doc.HasParseError(); error) throw std::runtime_error("Failed to parse " + FilePath);
+	const bool error = doc.HasParseError(); 
+	if(error) throw std::runtime_error("Failed to parse " + FilePath);
 	this->Question = doc["quiz"].GetString();
 	const rapidjson::Value& answerdata = doc["answers"];
 	if (4u != answerdata.Size()) throw std::runtime_error("answer data is wrong.");
@@ -17,7 +18,7 @@ static inline void ReleaseHandle(HANDLE handle) { FindClose(handle); }
 
 std::vector<QuizData> QuizData::LoadQuizData(const std::string& QuizRootDir) {
 	WIN32_FIND_DATAA Find{};
-	HandleManager<ReleaseHandle> hFind = FindFirstFileA(QuizRootDir.c_str(), &Find);
+	HandleManager hFind = { FindFirstFileA(QuizRootDir.c_str(), &Find), ReleaseHandle };
 	if (INVALID_HANDLE_VALUE == hFind) return {};
 	std::vector<QuizData> DataArr;
 	do {
