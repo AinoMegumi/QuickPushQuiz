@@ -237,7 +237,6 @@
   <ItemGroup>
     <ClCompile Include="..\..\src\DxInit.cpp" />
     <ClCompile Include="..\..\src\QuizData.cpp" />
-    <ClCompile Include="FileGet.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
