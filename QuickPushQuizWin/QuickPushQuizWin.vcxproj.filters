@@ -56,10 +56,25 @@
     <ClInclude Include="..\src\Core.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="DxInit.hpp">
+      <Filter>DxLib</Filter>
+    </ClInclude>
+    <ClInclude Include="CppIniRead.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="IniData.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Split.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="HandleManager.hpp">
       <Filter>ヘッダー ファイル</Filter>
+    </None>
+    <None Include="System\config.ini">
+      <Filter>リソース ファイル</Filter>
     </None>
   </ItemGroup>
 </Project>
