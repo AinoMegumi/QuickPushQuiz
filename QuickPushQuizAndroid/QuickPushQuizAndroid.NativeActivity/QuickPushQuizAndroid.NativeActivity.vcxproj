@@ -235,6 +235,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\Core.cpp" />
     <ClCompile Include="..\..\src\DxInit.cpp" />
     <ClCompile Include="..\..\src\QuizData.cpp" />
     <ClCompile Include="main.cpp" />
@@ -242,6 +243,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\src\ComputerAnswer.hpp" />
     <ClInclude Include="..\..\src\ComputerAnswerTime.hpp" />
+    <ClInclude Include="..\..\src\Core.hpp" />
     <ClInclude Include="..\..\src\GameEnd.hpp" />
     <ClInclude Include="..\..\src\Number.hpp" />
     <ClInclude Include="..\..\src\QuizData.hpp" />
