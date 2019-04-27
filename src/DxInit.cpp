@@ -2,7 +2,7 @@
 #include <stdexcept>
 
 #ifdef __ANDROID__
-void Init() {
+void InitDxLib() {
 	SetOutApplicationLogValidFlag(FALSE);
 	SetBackgroundColor(255, 255, 255);
 	SetAlwaysRunFlag(TRUE);
@@ -10,7 +10,7 @@ void Init() {
 	SetTransColor(255, 255, 255);
 	SetDrawScreen(DX_SCREEN_BACK);
 #else
-void Init(const int WindowWidth, const int WindowHeight) {
+void InitDxLib(const int WindowWidth, const int WindowHeight) {
 	SetMultiThreadFlag(TRUE);
 	SetMainWindowText("もぎ取れ！慰謝料");
 	SetOutApplicationLogValidFlag(FALSE);
