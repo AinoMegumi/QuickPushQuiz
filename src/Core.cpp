@@ -20,6 +20,15 @@ namespace Core {
 	}
 #ifdef WIN32
 	HINSTANCE InsanceHandle;
+	int MessageBox(LPCSTR lpMessage, LPCSTR Caption, const DWORD dwStyle) {
+		MSGBOXPARAMSA mbp{};
+		mbp.cbSize = sizeof(mbp);
+		mbp.hInstance = InsanceHandle;
+		mbp.lpszCaption = Caption;
+		mbp.lpszText = lpMessage;
+		mbp.dwStyle = dwStyle;
+		return MessageBoxIndirectA(&mbp);
+	}
 #endif
 
 }
