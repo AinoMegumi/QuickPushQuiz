@@ -1,11 +1,11 @@
-﻿#include "QuizData.hpp"
+﻿#include <rapidjson/document.h>
+#include "QuizData.hpp"
 #ifdef WIN32
 #include "HandleManager.hpp"
 #else
 #include <sys/stat.h>
 #include <dirent.h>
 #endif
-#include <rapidjson/document.h>
 
 QuizData::QuizData(const std::string& FilePath) {
 	rapidjson::Document doc{};
