@@ -1,9 +1,9 @@
-﻿#include <Windows.h>
+﻿#include "Core.hpp"
 #include <stdexcept>
 
-int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
+int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
+	Core::InsanceHandle = hInstance;
 	try {
-		const HRESULT hr = CoInitialize(nullptr);
 		
 	}
 	catch (const std::exception & er) {
