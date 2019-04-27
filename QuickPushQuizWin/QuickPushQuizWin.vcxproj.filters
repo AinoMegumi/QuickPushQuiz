@@ -30,6 +30,9 @@
     <ClCompile Include="..\src\DxInit.cpp">
       <Filter>DxLib</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\Core.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Win32Exception.hpp">
@@ -50,9 +53,11 @@
     <ClInclude Include="..\src\QuizData.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\Core.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
     <None Include="HandleManager.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </None>
