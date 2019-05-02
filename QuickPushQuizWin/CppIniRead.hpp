@@ -43,7 +43,7 @@ public:
 	template<typename T, std::enable_if_t<std::is_integral_v<T> && std::is_signed_v<T>, std::nullptr_t> = nullptr>
 	T GetNum(const std::string& Root, const std::string& Key, const T DefaultNum) const noexcept {
 		try {
-			return static_cast<T>(std::stoll(this->GetString(Root, Key)));
+			return static_cast<T>(std::stoll(this->IniDataList.at(Root).SearchOf(Key)));
 		}
 		catch (...) {
 			return DefaultNum;
@@ -52,7 +52,7 @@ public:
 	template<typename T, std::enable_if_t<std::is_unsigned_v<T>, std::nullptr_t> = nullptr>
 	T GetNum(const std::string& Root, const std::string& Key, const T DefaultNum) const noexcept {
 		try {
-			return static_cast<T>(std::stoull(this->GetString(Root, Key)));
+			return static_cast<T>(std::stoull(this->IniDataList.at(Root).SearchOf(Key)));
 		}
 		catch (...) {
 			return DefaultNum;
@@ -61,7 +61,7 @@ public:
 	template<typename T, std::enable_if_t<std::is_floating_point_v<T>, std::nullptr_t> = nullptr>
 	T GetNum(const std::string& Root, const std::string& Key, const T DefaultNum) const noexcept {
 		try {
-			return static_cast<T>(std::stold(this->GetString(Root, Key)));
+			return static_cast<T>(std::stold(this->IniDataList.at(Root).SearchOf(Key)));
 		}
 		catch (...) {
 			return DefaultNum;
