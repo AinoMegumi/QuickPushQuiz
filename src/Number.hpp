@@ -233,7 +233,6 @@ namespace standard {
 		// 例外 : 引数に指定された値が正の場合、計算することによって最小値が最大値を上回る場合、std::runtime_errorが投げられる
 		void AddToMin(const T num) { this->ChangeMinimumToReservedNum(this->minimum + num); }
 	};
-#ifdef __clang__
 	template<typename T, typename U = T, typename V = T, std::enable_if_t<std::is_arithmetic<T>::value, std::nullptr_t> = nullptr>
 	constexpr const number<T>& clamp(const number<T>& v, const number<U>& lo, const number<V>& hi) { return number<T>(clamp<T>(v.Get(), lo.template Get<T>(), hi.template Get<T>())); }
 	template<typename T, typename U = T, typename V = T, std::enable_if_t<std::is_arithmetic<T>::value, std::nullptr_t> = nullptr>
@@ -281,80 +280,6 @@ namespace standard {
 	inline bool operator >  (const T& n, const number<U>& num) { return n > num.template Get<T>(); }
 	template<typename T, typename U = T, std::enable_if_t<std::is_arithmetic<T>::value, std::nullptr_t> = nullptr>
 	inline bool operator >= (const T& n, const number<U>& num) { return n >= num.template Get<T>(); }
-	template<typename T, typename U = T, std::enable_if_t<std::is_arithmetic<U>::value, std::nullptr_t> = nullptr>
-	inline bool operator == (const T& a, const standard::number<U>& b) { return a == b.template Get<T>(); }
-	template<typename T, typename U = T, std::enable_if_t<std::is_arithmetic<U>::value, std::nullptr_t> = nullptr>
-	inline bool operator != (const T& a, const standard::number<U>& b) { return a != b.template Get<T>(); }
-	template<typename T, typename U = T, std::enable_if_t<std::is_arithmetic<U>::value, std::nullptr_t> = nullptr>
-	inline bool operator <  (const T& a, const standard::number<U>& b) { return a < b.template Get<T>(); }
-	template<typename T, typename U = T, std::enable_if_t<std::is_arithmetic<U>::value, std::nullptr_t> = nullptr>
-	inline bool operator <= (const T& a, const standard::number<U>& b) { return a <= b.template Get<T>(); }
-	template<typename T, typename U = T, std::enable_if_t<std::is_arithmetic<U>::value, std::nullptr_t> = nullptr>
-	inline bool operator >  (const T& a, const standard::number<U>& b) { return a > b.template Get<T>(); }
-	template<typename T, typename U = T, std::enable_if_t<std::is_arithmetic<U>::value, std::nullptr_t> = nullptr>
-	inline bool operator >= (const T& a, const standard::number<U>& b) { return a >= b.template Get<T>(); }
-#else
-	template<typename T, typename U = T, typename V = T, std::enable_if_t<std::is_arithmetic<T>::value, std::nullptr_t> = nullptr>
-	constexpr const number<T> & clamp(const number<T> & v, const number<U> & lo, const number<V> & hi) { return number<T>(clamp<T>(v.Get(), lo.Get<T>(), hi.Get<T>())); }
-	template<typename T, typename U = T, typename V = T, std::enable_if_t<std::is_arithmetic<T>::value, std::nullptr_t> = nullptr>
-	constexpr const number<T> & clamp(const T & v, const number<U> & lo, const number<V> & hi) { return number<T>(clamp<T>(v, lo.Get<T>(), hi.Get<T>())); }
-	template<typename T, typename U = T, typename V = T, std::enable_if_t<std::is_arithmetic<T>::value, std::nullptr_t> = nullptr>
-	constexpr const number<T> & clamp(const number<T> & v, const U & lo, const number<V> & hi) { return number<T>(clamp<T>(v.Get(), static_cast<T>(lo), hi.Get<T>())); }
-	template<typename T, typename U = T, typename V = T, std::enable_if_t<std::is_arithmetic<T>::value, std::nullptr_t> = nullptr>
-	constexpr const number<T> & clamp(const number<T> & v, const number<U> & lo, const V & hi) { return number<T>(clamp<T>(v.Get(), lo.Get<T>(), static_cast<T>(hi))); }
-	template<typename T, typename U = T, typename V = T, std::enable_if_t<std::is_arithmetic<T>::value, std::nullptr_t> = nullptr>
-	constexpr const number<T> & clamp(const T & v, const U & lo, const number<V> & hi) { return number<T>(clamp<T>(v, static_cast<T>(lo), hi.Get<T>())); }
-	template<typename T, typename U = T, typename V = T, std::enable_if_t<std::is_arithmetic<T>::value, std::nullptr_t> = nullptr>
-	constexpr const number<T> & clamp(const T & v, const number<U> & lo, const V & hi) { return number<T>(clamp<T>(v, lo.Get(), static_cast<T>(hi))); }
-	template<typename T, typename U = T, typename V = T, std::enable_if_t<std::is_arithmetic<T>::value, std::nullptr_t> = nullptr>
-	constexpr const number<T> & clamp(const number<T> & v, const U & lo, const V & hi) { return number<T>(clamp<T>(v.Get(), static_cast<T>(lo), static_cast<T>(hi))); }
-
-	template<typename T, typename U = T, std::enable_if_t<std::is_arithmetic<T>::value, std::nullptr_t> = nullptr>
-	inline number<T> operator + (const T & n, const number<U> & num) { return number<T>(impl::clamp(n + num.Get<T>(), num.GetMin(), num.GetMax()), num.GetMax(), num.GetMin()); }
-	template<typename T, typename U = T, std::enable_if_t<std::is_arithmetic<T>::value, std::nullptr_t> = nullptr>
-	inline number<T> operator - (const T & n, const number<U> & num) { return number<T>(impl::clamp(n - num.Get<T>(), num.GetMin(), num.GetMax()), num.GetMax(), num.GetMin()); }
-	template<typename T, typename U = T, std::enable_if_t<std::is_arithmetic<T>::value, std::nullptr_t> = nullptr>
-	inline number<T> operator * (const T & n, const number<U> & num) { return number<T>(impl::clamp(n * num.Get<T>(), num.GetMin(), num.GetMax()), num.GetMax(), num.GetMin()); }
-	template<typename T, typename U = T, std::enable_if_t<std::is_arithmetic<T>::value, std::nullptr_t> = nullptr>
-	inline number<T> operator / (const T & n, const number<U> & num) { return number<T>(impl::clamp(n / num.Get<T>(), num.GetMin(), num.GetMax()), num.GetMax(), num.GetMin()); }
-	template<typename T, typename U = T, std::enable_if_t<std::is_arithmetic<T>::value, std::nullptr_t> = nullptr>
-	inline number<T> operator & (const T & n, const number<U> & num) { return number<T>(impl::clamp(n & num.Get<T>(), num.GetMin(), num.GetMax()), num.GetMax(), num.GetMin()); }
-	template<typename T, typename U = T, std::enable_if_t<std::is_arithmetic<T>::value, std::nullptr_t> = nullptr>
-	inline number<T> operator % (const T & n, const number<U> & num) { return number<T>(impl::clamp(n % num.Get<T>(), num.GetMin(), num.GetMax()), num.GetMax(), num.GetMin()); }
-	template<typename T, typename U = T, std::enable_if_t<std::is_arithmetic<T>::value, std::nullptr_t> = nullptr>
-	inline number<T> operator | (const T & n, const number<U> & num) { return number<T>(impl::clamp(n | num.Get<T>(), num.GetMin(), num.GetMax()), num.GetMax(), num.GetMin()); }
-	template<typename T, typename U = T, std::enable_if_t<std::is_arithmetic<T>::value, std::nullptr_t> = nullptr>
-	inline number<T> operator ^ (const T & n, const number<U> & num) { return number<T>(impl::clamp(n ^ num.Get<T>(), num.GetMin(), num.GetMax()), num.GetMax(), num.GetMin()); }
-	template<typename T, typename U = T, std::enable_if_t<std::is_arithmetic<T>::value, std::nullptr_t> = nullptr>
-	inline number<T> operator << (const T & n, const number<U> & num) { return number<T>(impl::clamp(n << num.Get<T>(), num.GetMin(), num.GetMax()), num.GetMax(), num.GetMin()); }
-	template<typename T, typename U = T, std::enable_if_t<std::is_arithmetic<T>::value, std::nullptr_t> = nullptr>
-	inline number<T> operator >> (const T & n, const number<U> & num) { return number<T>(impl::clamp(n >> num.Get<T>(), num.GetMin(), num.GetMax()), num.GetMax(), num.GetMin()); }
-	template<typename T, typename U = T, std::enable_if_t<std::is_arithmetic<T>::value, std::nullptr_t> = nullptr>
-	inline bool operator == (const T & n, const number<U> & num) { return n == num.Get<T>(); }
-	template<typename T, typename U = T, std::enable_if_t<std::is_arithmetic<T>::value, std::nullptr_t> = nullptr>
-	inline bool operator != (const T & n, const number<U> & num) { return n != num.Get<T>(); }
-	template<typename T, typename U = T, std::enable_if_t<std::is_arithmetic<T>::value, std::nullptr_t> = nullptr>
-	inline bool operator <  (const T & n, const number<U> & num) { return n < num.Get<T>(); }
-	template<typename T, typename U = T, std::enable_if_t<std::is_arithmetic<T>::value, std::nullptr_t> = nullptr>
-	inline bool operator <= (const T & n, const number<U> & num) { return n <= num.Get<T>(); }
-	template<typename T, typename U = T, std::enable_if_t<std::is_arithmetic<T>::value, std::nullptr_t> = nullptr>
-	inline bool operator >  (const T & n, const number<U> & num) { return n > num.Get<T>(); }
-	template<typename T, typename U = T, std::enable_if_t<std::is_arithmetic<T>::value, std::nullptr_t> = nullptr>
-	inline bool operator >= (const T & n, const number<U> & num) { return n >= num.Get<T>(); }
-	template<typename T, typename U = T, std::enable_if_t<std::is_arithmetic<U>::value, std::nullptr_t> = nullptr>
-	inline bool operator == (const T & a, const standard::number<U> & b) { return a == b.Get<T>(); }
-	template<typename T, typename U = T, std::enable_if_t<std::is_arithmetic<U>::value, std::nullptr_t> = nullptr>
-	inline bool operator != (const T & a, const standard::number<U> & b) { return a != b.Get<T>(); }
-	template<typename T, typename U = T, std::enable_if_t<std::is_arithmetic<U>::value, std::nullptr_t> = nullptr>
-	inline bool operator <  (const T & a, const standard::number<U> & b) { return a < b.Get<T>(); }
-	template<typename T, typename U = T, std::enable_if_t<std::is_arithmetic<U>::value, std::nullptr_t> = nullptr>
-	inline bool operator <= (const T & a, const standard::number<U> & b) { return a <= b.Get<T>(); }
-	template<typename T, typename U = T, std::enable_if_t<std::is_arithmetic<U>::value, std::nullptr_t> = nullptr>
-	inline bool operator >  (const T & a, const standard::number<U> & b) { return a > b.Get<T>(); }
-	template<typename T, typename U = T, std::enable_if_t<std::is_arithmetic<U>::value, std::nullptr_t> = nullptr>
-	inline bool operator >= (const T & a, const standard::number<U> & b) { return a >= b.Get<T>(); }
-
-#endif
 	template<typename T, typename U = T, std::enable_if_t<std::is_arithmetic<T>::value, std::nullptr_t> = nullptr>
 	constexpr const number<T>& max(const number<T>& Left, const number<U>& Right) { return number<T>(std::max(Left.Get(), Right.Get())); }
 	template<typename T, typename U = T, std::enable_if_t<std::is_arithmetic<T>::value, std::nullptr_t> = nullptr>
@@ -369,25 +294,10 @@ namespace standard {
 	template<typename T, typename U = T, std::enable_if_t<std::is_arithmetic<T>::value, std::nullptr_t> = nullptr>
 	constexpr const number<T>& min(const T& Left, const number<U>& Right) { return number<T>(std::min(Left, Right.Get())); }
 
-#ifdef __clang__
 	template<typename F, std::enable_if_t<std::is_floating_point<F>::value, std::nullptr_t> = nullptr>
 	inline number<F> abs(const number<F> & n) { return number<F>(std::abs(n.template Get<F>())); }
 	template<typename I, std::enable_if_t<std::is_integral<I>::value, std::nullptr_t> = nullptr>
 	inline number<I> abs(const number<I> & n) { return number<I>(std::abs(n.template Get<I>())); }
-
-#else
-	template<typename F, std::enable_if_t<std::is_floating_point<F>::value, std::nullptr_t> = nullptr>
-	inline number<F> abs(const number<F>& n) { return number<F>(std::abs(n.Get<F>())); }
-	template<typename I, std::enable_if_t<std::is_integral<I>::value, std::nullptr_t> = nullptr>
-	inline number<I> abs(const number<I>& n) { return number<I>(std::abs(n.Get<I>())); }
-#endif
-	//inline number<long double> abs(const number<long double> n) { return number<long double>(std::abs(n.Get())); }
-	//inline number<double> abs(const number<double> n) { return number<double>(std::abs(n.Get())); }
-	//inline number<float> abs(const number<float> n) { return number<float>(std::abs(n.Get())); }
-	//inline number<long long> abs(const number<long long> n) { return number<long long>(std::abs(n.Get())); }
-	//inline number<long> abs(const number<long> n) { return number<long>(std::abs(n.Get())); }
-	//inline number<int> abs(const number<int> n) { return number<int>(std::abs(n.Get())); }
-
 	namespace {
 		template<typename T, std::enable_if_t<std::is_signed<T>::value, std::nullptr_t> = nullptr>
 		number<T> string_to_signed_integer(const std::string& s, size_t* Index = 0, const int Base = 10) { return number<T>(static_cast<T>(std::stoll(s, Index, Base))); }
