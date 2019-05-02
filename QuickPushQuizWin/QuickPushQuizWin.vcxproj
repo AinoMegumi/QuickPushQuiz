@@ -159,6 +159,7 @@
     <ClCompile Include="..\src\Core.cpp" />
     <ClCompile Include="..\src\DxInit.cpp" />
     <ClCompile Include="..\src\QuizData.cpp" />
+    <ClCompile Include="ApplicationCurrentDirectoryManager.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Win32Exception.cpp" />
   </ItemGroup>
@@ -169,6 +170,7 @@
     <ClInclude Include="..\src\GameEnd.hpp" />
     <ClInclude Include="..\src\Number.hpp" />
     <ClInclude Include="..\src\QuizData.hpp" />
+    <ClInclude Include="ApplicationCurrentDirectoryManager.hpp" />
     <ClInclude Include="CppIniRead.hpp" />
     <ClInclude Include="DxInit.hpp" />
     <ClInclude Include="IniData.hpp" />
