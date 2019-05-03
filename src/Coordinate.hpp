@@ -1,5 +1,5 @@
 #pragma once
 struct Coordinate {
-	int X;
-	int Y;
+	int x;
+	int y;
 };
