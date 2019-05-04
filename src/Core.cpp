@@ -1,5 +1,5 @@
 ﻿#include "Core.hpp"
-#ifdef WIN32
+#ifdef _WINDOWS
 #include "CppIniRead.hpp"
 #else
 #include "DxLib.h"
@@ -9,16 +9,16 @@ namespace Core {
 	int DisplayWidth;
 	int DisplayHeight;
 	void LoadScreenSizeInfo() {
-#ifdef WIN32
+#ifdef _WINDOWS
 		const IniReadA ini(".\\System\\config.ini");
 		DisplayWidth = ini.GetNum<int>("Display", "Width", 800);
 		DisplayHeight = ini.GetNum<int>("Display", "Height", 600);
 #else
 		int ColorBit = 0;
-		GetScreenState(&DisplayWidth, &DisplayHeight, &ColorBit);
+		DxLib::GetScreenState(&DisplayWidth, &DisplayHeight, &ColorBit);
 #endif
 	}
-#ifdef WIN32
+#ifdef _WINDOWS
 	HINSTANCE InsanceHandle;
 	int MessageBox(LPCSTR lpMessage, LPCSTR Caption, const DWORD dwStyle) {
 		MSGBOXPARAMSA mbp{};
@@ -30,5 +30,4 @@ namespace Core {
 		return MessageBoxIndirectA(&mbp);
 	}
 #endif
-
 }

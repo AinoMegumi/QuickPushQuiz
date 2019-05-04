@@ -1,6 +1,6 @@
 ﻿#include <rapidjson/document.h>
 #include "QuizData.hpp"
-#ifdef WIN32
+#ifdef _WINDOWS
 #include "HandleManager.hpp"
 #else
 #include <sys/stat.h>
@@ -19,7 +19,7 @@ QuizData::QuizData(const std::string& FilePath) {
 	this->CorrectAnswer = standard::number<unsigned short>(doc["correct"].GetInt(), 0, 4);
 }
 
-#ifdef WIN32
+#ifdef _WINDOWS
 static inline void ReleaseHandle(HANDLE handle) { FindClose(handle); }
 #endif
 static inline bool isReservedExtensionFile(const std::string& Path, const std::string& Extension) {
@@ -27,7 +27,7 @@ static inline bool isReservedExtensionFile(const std::string& Path, const std::s
 }
 
 std::vector<QuizData> QuizData::LoadQuizData(const std::string& QuizRootDir) {
-#ifdef WIN32
+#ifdef _WINDOWS
 	WIN32_FIND_DATAA Find{};
 	HandleManager hFind = { FindFirstFileA(QuizRootDir.c_str(), &Find), ReleaseHandle };
 	if (INVALID_HANDLE_VALUE == hFind) return {};
