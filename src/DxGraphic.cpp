@@ -1,4 +1,4 @@
-#include "DxGraphic.hpp"
+﻿#include "DxGraphic.hpp"
 #include "DxLib.h"
 #include <fstream>
 
@@ -21,46 +21,31 @@ DxGraphic& DxGraphic::operator = (DxGraphic&& d) noexcept {
 	return *this;
 }
 
-void DxGraphic::Graph(const Coordinate LeftTop, const bool Trans) DX_CNOEXCEPT {
-#ifdef DX_GRAPHIC_CONTROL_NOEXCEPT
-	DxLib::DrawGraph(LeftTop.X, LeftTop.Y, this->Handle, Trans ? TRUE : FALSE);
-#else
-	if (-1 == DxLib::DrawGraph(LeftTop.X, LeftTop.Y, this->Handle, Trans ? TRUE : FALSE)) throw std::runtime_error("Error in DrawGraph function");
-#endif
+void DxGraphic::Graph(const Coordinate LeftTop, const bool Trans) const noexcept {
+	DxLib::DrawGraph(LeftTop.x, LeftTop.y, this->Handle, Trans ? TRUE : FALSE);
 }
 
-void DxGraphic::Graph(const Coordinate LeftTop, const Coordinate RightBottom, const bool Trans) DX_CNOEXCEPT {
-#ifdef DX_GRAPHIC_CONTROL_NOEXCEPT
-	DxLib::DrawExtendGraph(LeftTop.X, LeftTop.Y, RightBottom.X, RightBottom.Y, this->Handle, Trans ? TRUE : FALSE);
-#else
-	if (-1 == DxLib::DrawExtendGraph(LeftTop.X, LeftTop.Y, RightBottom.X, RightBottom.Y, this->Handle, Trans ? TRUE : FALSE))
-		throw std::runtime_error("Error in DrawExtendGraph function");
-#endif
+void DxGraphic::Graph(const Coordinate LeftTop, const Coordinate RightBottom, const bool Trans) const noexcept {
+	DxLib::DrawExtendGraph(LeftTop.x, LeftTop.y, RightBottom.x, RightBottom.y, this->Handle, Trans ? TRUE : FALSE);
 }
 
-Coordinate DxGraphic::GetGraphSize() DX_CNOEXCEPT {
+Coordinate DxGraphic::GetGraphSize() const noexcept {
 	Coordinate Size{};
-	if (-1 == DxLib::GetGraphSize(this->Handle, &Size.X, &Size.Y))
-#ifdef DX_GRAPHIC_CONTROL_NOEXCEPT
-		return { 0, 0 };
-#else
-		throw std::runtime_error("Error in GetGraphSize function");
-#endif
-	return Size;
+	return -1 == DxLib::GetGraphSize(this->Handle, &Size.x, &Size.y) ? Coordinate(0, 0) : Size;
 }
 
 void GraphicManager::AddGraphic(const std::string& Key, const std::string& FilePath) {
-	this->GraphicDataBuf.emplace(Key, std::move(DxGraphic(FilePath)));
+	this->GraphicDataBuf.emplace(Key, DxGraphic(FilePath));
 }
 
-void GraphicManager::Graph(const std::string& Key, const Coordinate LeftTop, const Coordinate RightBottom, const bool Trans) DX_CNOEXCEPT {
-	if (RightBottom.X == -1 && RightBottom.Y == -1)	this->GraphicDataBuf.at(Key).Graph(LeftTop, Trans);
-	else if (RightBottom.X != -1 && RightBottom.Y != -1) this->GraphicDataBuf.at(Key).Graph(LeftTop, RightBottom, Trans);
+void GraphicManager::Graph(const std::string& Key, const Coordinate LeftTop, const Coordinate RightBottom, const bool Trans) const noexcept {
+	if (RightBottom.x == -1 && RightBottom.y == -1)	this->GraphicDataBuf.at(Key).Graph(LeftTop, Trans);
+	else if (RightBottom.x != -1 && RightBottom.y != -1) this->GraphicDataBuf.at(Key).Graph(LeftTop, RightBottom, Trans);
 	else {
 		const Coordinate SizeData = this->GraphicDataBuf.at(Key).GetGraphSize();
 		Coordinate GraphRightBottom = RightBottom;
-		if (RightBottom.X == -1) GraphRightBottom.X = SizeData.X;
-		if (RightBottom.Y == -1) GraphRightBottom.Y = SizeData.Y;
+		if (RightBottom.x == -1) GraphRightBottom.x = SizeData.x;
+		if (RightBottom.y == -1) GraphRightBottom.y = SizeData.y;
 		this->GraphicDataBuf.at(Key).Graph(GraphRightBottom, Trans);
 	}
 }
