@@ -17,6 +17,6 @@ public:
 	ComputerAnswer(const standard::number<float>& CorrectRate, std::mt19937& RandEngine)
 		: rand(CorrectRate.Get()), RndEng(RandEngine) {}
 	standard::number<unsigned short> Answer(const QuizData& quiz) const {
-		return this->rand(this->RndEng) ? quiz.CorrectAnswer : this->Answer(quiz.CorrectAnswer);
+		return this->rand(this->RndEng.get()) ? quiz.CorrectAnswer : this->Answer(quiz.CorrectAnswer);
 	}
 };
