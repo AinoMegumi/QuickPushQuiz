@@ -5,6 +5,7 @@ struct Position;
 struct Coordinate {
 	Coordinate() = default;
 	constexpr Coordinate(const int X, const int Y) : x(X), y(Y) {}
+	Position ToPosition() const;
 	Coordinate operator << (const Position& p);
 	int x;
 	int y;
@@ -14,6 +15,7 @@ struct Coordinate {
 struct Position {
 	Position() = default;
 	constexpr Position(const float X, const float Y) : x(X), y(Y) {}
+	Coordinate ToCoordinate() const;
 	Position operator << (const Coordinate& c);
 	float x, y;
 };
