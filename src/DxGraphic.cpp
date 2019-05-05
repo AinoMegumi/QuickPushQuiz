@@ -8,8 +8,7 @@ static inline int DxLoadGraph(const std::string& FilePath) {
 	else return GHandle;
 }
 
-DxGraphic::DxGraphic(const std::string& FilePath) 
-	: Handle(DxLoadGraph(FilePath)) {}
+DxGraphic::DxGraphic(const std::string& FilePath) : Handle(DxLoadGraph(FilePath)) {}
 
 DxGraphic::~DxGraphic() noexcept { DxLib::DeleteGraph(this->Handle); }
 
