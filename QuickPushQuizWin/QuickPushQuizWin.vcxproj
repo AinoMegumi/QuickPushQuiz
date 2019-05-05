@@ -160,9 +160,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\src\Coordinate.cpp" />
     <ClCompile Include="..\src\Core.cpp" />
     <ClCompile Include="..\src\DxGraphic.cpp" />
     <ClCompile Include="..\src\DxInit.cpp" />
+    <ClCompile Include="..\src\MainProcess.cpp" />
     <ClCompile Include="..\src\QuizData.cpp" />
     <ClCompile Include="ApplicationCurrentDirectoryManager.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -177,6 +179,7 @@
     <ClInclude Include="..\src\DxInit.hpp" />
     <ClInclude Include="..\src\GameController.hpp" />
     <ClInclude Include="..\src\GameEnd.hpp" />
+    <ClInclude Include="..\src\MainProcess.hpp" />
     <ClInclude Include="..\src\Number.hpp" />
     <ClInclude Include="..\src\QuizData.hpp" />
     <ClInclude Include="..\src\QuizScreenController.hpp" />

@@ -129,6 +129,9 @@
       <Project>{1225c4aa-2c21-43f3-8af9-58740fb5e812}</Project>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <JavaCompile Include="src\com\QuickPushQuizAndroid\Packaging\QuickPushQuiz.java" />
+  </ItemGroup>
   <Import Project="$(AndroidTargetsPath)\Android.targets" />
   <ImportGroup Label="ExtensionTargets" />
 </Project>

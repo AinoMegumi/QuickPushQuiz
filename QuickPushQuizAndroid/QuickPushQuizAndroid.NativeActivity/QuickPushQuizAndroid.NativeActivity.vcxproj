@@ -130,10 +130,13 @@
       <AdditionalIncludeDirectories>$(SolutionDir)src;$(ProjectDir);$(DXLIB_ANDROID_ARM64);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <CppLanguageStandard>c++1z</CppLanguageStandard>
       <ExceptionHandling>Enabled</ExceptionHandling>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <Verbose>false</Verbose>
     </ClCompile>
     <Link>
       <LibraryDependencies>%(LibraryDependencies);GLESv1_CM;EGL;stdc++;GLESv2;OpenSLES;m;DxLib;DxUseCLib;jpeg;png;zlib;tiff;theora_static;vorbis_static;vorbisfile_static;ogg_static;bullet;opus</LibraryDependencies>
       <AdditionalLibraryDirectories>$(DXLIB_ANDROID_ARM64);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>-v %(AdditionalOptions)</AdditionalOptions>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
@@ -144,10 +147,13 @@
       <AdditionalIncludeDirectories>$(SolutionDir)src;$(ProjectDir);$(DXLIB_ANDROID_ARM64);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <CppLanguageStandard>c++1z</CppLanguageStandard>
       <ExceptionHandling>Enabled</ExceptionHandling>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <Verbose>false</Verbose>
     </ClCompile>
     <Link>
       <LibraryDependencies>%(LibraryDependencies);GLESv1_CM;EGL;stdc++;GLESv2;OpenSLES;m;DxLib;DxUseCLib;jpeg;png;zlib;tiff;theora_static;vorbis_static;vorbisfile_static;ogg_static;bullet;opus</LibraryDependencies>
       <AdditionalLibraryDirectories>$(DXLIB_ANDROID_ARM64);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>-v %(AdditionalOptions)</AdditionalOptions>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
@@ -158,10 +164,13 @@
       <AdditionalIncludeDirectories>$(SolutionDir)src;$(ProjectDir);$(DXLIB_ANDROID_ARM);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <CppLanguageStandard>c++1z</CppLanguageStandard>
       <ExceptionHandling>Enabled</ExceptionHandling>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <Verbose>false</Verbose>
     </ClCompile>
     <Link>
       <LibraryDependencies>%(LibraryDependencies);GLESv1_CM;EGL;stdc++;GLESv2;OpenSLES;m;DxLib;DxUseCLib;jpeg;png;zlib;tiff;theora_static;vorbis_static;vorbisfile_static;ogg_static;bullet;opus</LibraryDependencies>
       <AdditionalLibraryDirectories>$(DXLIB_ANDROID_ARM);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>-v %(AdditionalOptions)</AdditionalOptions>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
@@ -172,10 +181,13 @@
       <AdditionalIncludeDirectories>$(SolutionDir)src;$(ProjectDir);$(DXLIB_ANDROID_ARM);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <CppLanguageStandard>c++1z</CppLanguageStandard>
       <ExceptionHandling>Enabled</ExceptionHandling>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <Verbose>false</Verbose>
     </ClCompile>
     <Link>
       <LibraryDependencies>%(LibraryDependencies);GLESv1_CM;EGL;stdc++;GLESv2;OpenSLES;m;DxLib;DxUseCLib;jpeg;png;zlib;tiff;theora_static;vorbis_static;vorbisfile_static;ogg_static;bullet;opus</LibraryDependencies>
       <AdditionalLibraryDirectories>$(DXLIB_ANDROID_ARM);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>-v %(AdditionalOptions)</AdditionalOptions>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -186,10 +198,13 @@
       <AdditionalIncludeDirectories>$(SolutionDir)src;$(ProjectDir);$(DXLIB_ANDROID_X64);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <CppLanguageStandard>c++1z</CppLanguageStandard>
       <ExceptionHandling>Enabled</ExceptionHandling>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <Verbose>false</Verbose>
     </ClCompile>
     <Link>
       <LibraryDependencies>%(LibraryDependencies);GLESv1_CM;EGL;stdc++;GLESv2;OpenSLES;m;DxLib;DxUseCLib;jpeg;png;zlib;tiff;theora_static;vorbis_static;vorbisfile_static;ogg_static;bullet;opus</LibraryDependencies>
       <AdditionalLibraryDirectories>$(DXLIB_ANDROID_X64);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>-v %(AdditionalOptions)</AdditionalOptions>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -200,10 +215,13 @@
       <AdditionalIncludeDirectories>$(SolutionDir)src;$(ProjectDir);$(DXLIB_ANDROID_X64);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <CppLanguageStandard>c++1z</CppLanguageStandard>
       <ExceptionHandling>Enabled</ExceptionHandling>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <Verbose>false</Verbose>
     </ClCompile>
     <Link>
       <LibraryDependencies>%(LibraryDependencies);GLESv1_CM;EGL;stdc++;GLESv2;OpenSLES;m;DxLib;DxUseCLib;jpeg;png;zlib;tiff;theora_static;vorbis_static;vorbisfile_static;ogg_static;bullet;opus</LibraryDependencies>
       <AdditionalLibraryDirectories>$(DXLIB_ANDROID_X64);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>-v %(AdditionalOptions)</AdditionalOptions>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
@@ -214,10 +232,13 @@
       <AdditionalIncludeDirectories>$(SolutionDir)src;$(ProjectDir);$(DXLIB_ANDROID_X86);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <CppLanguageStandard>c++1z</CppLanguageStandard>
       <ExceptionHandling>Enabled</ExceptionHandling>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <Verbose>false</Verbose>
     </ClCompile>
     <Link>
       <LibraryDependencies>%(LibraryDependencies);GLESv1_CM;EGL;stdc++;GLESv2;OpenSLES;m;DxLib;DxUseCLib;jpeg;png;zlib;tiff;theora_static;vorbis_static;vorbisfile_static;ogg_static;bullet;opus</LibraryDependencies>
       <AdditionalLibraryDirectories>$(DXLIB_ANDROID_X86);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>-v %(AdditionalOptions)</AdditionalOptions>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
@@ -228,16 +249,21 @@
       <AdditionalIncludeDirectories>$(SolutionDir)src;$(ProjectDir);$(DXLIB_ANDROID_X86);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <CppLanguageStandard>c++1z</CppLanguageStandard>
       <ExceptionHandling>Enabled</ExceptionHandling>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <Verbose>false</Verbose>
     </ClCompile>
     <Link>
       <LibraryDependencies>%(LibraryDependencies);GLESv1_CM;EGL;stdc++;GLESv2;OpenSLES;m;DxLib;DxUseCLib;jpeg;png;zlib;tiff;theora_static;vorbis_static;vorbisfile_static;ogg_static;bullet;opus</LibraryDependencies>
       <AdditionalLibraryDirectories>$(DXLIB_ANDROID_X86);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>-v %(AdditionalOptions)</AdditionalOptions>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\Coordinate.cpp" />
     <ClCompile Include="..\..\src\Core.cpp" />
     <ClCompile Include="..\..\src\DxGraphic.cpp" />
     <ClCompile Include="..\..\src\DxInit.cpp" />
+    <ClCompile Include="..\..\src\MainProcess.cpp" />
     <ClCompile Include="..\..\src\QuizData.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
@@ -250,6 +276,7 @@
     <ClInclude Include="..\..\src\DxInit.hpp" />
     <ClInclude Include="..\..\src\GameController.hpp" />
     <ClInclude Include="..\..\src\GameEnd.hpp" />
+    <ClInclude Include="..\..\src\MainProcess.hpp" />
     <ClInclude Include="..\..\src\Number.hpp" />
     <ClInclude Include="..\..\src\QuizData.hpp" />
     <ClInclude Include="..\..\src\QuizScreenController.hpp" />

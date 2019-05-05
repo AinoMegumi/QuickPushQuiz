@@ -13,8 +13,17 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="DxLib">
+    <Filter Include="src">
       <UniqueIdentifier>{2833d08a-c71c-450c-abcf-1fa2d945e0ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\DxLib">
+      <UniqueIdentifier>{0c49dc76-9271-4633-b6a3-637b178eb999}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Data">
+      <UniqueIdentifier>{f83a62cf-1a50-4429-ae34-af7009dcb38b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\GameCore">
+      <UniqueIdentifier>{6737e574-22bc-42de-b074-bfe5503144e8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -24,42 +33,30 @@
     <ClCompile Include="Win32Exception.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\QuizData.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\DxInit.cpp">
-      <Filter>DxLib</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\Core.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="ApplicationCurrentDirectoryManager.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="..\src\DxGraphic.cpp">
-      <Filter>DxLib</Filter>
+      <Filter>src\DxLib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\DxInit.cpp">
+      <Filter>src\DxLib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Core.cpp">
+      <Filter>src\GameCore</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\QuizData.cpp">
+      <Filter>src\Data</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\MainProcess.cpp">
+      <Filter>src\GameCore</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Coordinate.cpp">
+      <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Win32Exception.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\ComputerAnswer.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\ComputerAnswerTime.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\GameEnd.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\Number.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\QuizData.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\Core.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="CppIniRead.hpp">
@@ -71,26 +68,47 @@
     <ClInclude Include="Split.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\DxInit.hpp">
-      <Filter>DxLib</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\DxGraphic.hpp">
-      <Filter>DxLib</Filter>
-    </ClInclude>
     <ClInclude Include="ApplicationCurrentDirectoryManager.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\Coordinate.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\GameController.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\QuizScreenController.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="KeyboardController.hpp">
       <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Coordinate.hpp">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\DxGraphic.hpp">
+      <Filter>src\DxLib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\DxInit.hpp">
+      <Filter>src\DxLib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Core.hpp">
+      <Filter>src\GameCore</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ComputerAnswerTime.hpp">
+      <Filter>src\GameCore</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ComputerAnswer.hpp">
+      <Filter>src\GameCore</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\QuizData.hpp">
+      <Filter>src\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\GameEnd.hpp">
+      <Filter>src\GameCore</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Number.hpp">
+      <Filter>src\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\MainProcess.hpp">
+      <Filter>src\GameCore</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\GameController.hpp">
+      <Filter>src\DxLib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\QuizScreenController.hpp">
+      <Filter>src\DxLib</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
