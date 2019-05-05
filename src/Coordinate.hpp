@@ -1,12 +1,10 @@
 ﻿#pragma once
-struct Position;
+#include "Core.hpp"
 
 // 絶対座標系
 struct Coordinate {
 	Coordinate() = default;
-	constexpr Coordinate(const int X, const int Y) : x(X), y(Y) {}
-	Position ToPosition() const;
-	Coordinate operator << (const Position& p);
+	constexpr Coordinate(const int X, const int Y) : x(X), y(Y) {}	
 	int x;
 	int y;
 };
@@ -19,3 +17,11 @@ struct Position {
 	Position operator << (const Coordinate& c);
 	float x, y;
 };
+
+void operator << (Coordinate &c, const Position p) {
+	c = { static_cast<int>(static_cast<float>(Core::DisplayWidth) * p.x + 0.5), static_cast<int>(static_cast<float>(Core::DisplayHeight) * p.y + 0.5) };
+}
+
+void operator << (Position &p, const Coordinate & c) {
+	p = { static_cast<float>(c.x) / static_cast<float>(Core::DisplayWidth), static_cast<float>(c.y) / static_cast<float>(Core::DisplayHeight) };
+}
