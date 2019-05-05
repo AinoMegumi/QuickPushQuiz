@@ -4,7 +4,7 @@
 #include "DxInit.hpp"
 
 MainProcess::MainProcess() : Graph() {
-#ifndef WIN32
+#ifdef __ANDROID__
 	InitDxLib();
 	Core::LoadScreenSizeInfo();
 	this->NativeActivity = DxLib::GetNativeActivity();
@@ -17,7 +17,7 @@ MainProcess::MainProcess() : Graph() {
 }
 
 MainProcess::~MainProcess() { 
-#ifndef WIN32
+#ifdef __ANDROID__
 	this->NativeActivity->vm->DetachCurrentThread();
 #endif
 	DxLib_End();
