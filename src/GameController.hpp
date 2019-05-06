@@ -7,6 +7,5 @@ protected:
 public:
 	GameController() : Current() {}
 	virtual void UpdateCurrentPos() = 0;
-	virtual int Clicked() = 0;
 	Coordinate::Absolute GetCurrentPos() const noexcept { return this->Current; }
 };
