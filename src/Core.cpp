@@ -13,6 +13,7 @@ namespace Core {
 		const IniReadA ini(".\\System\\config.ini");
 		DisplayWidth = ini.GetNum<int>("Display", "Width", 800);
 		DisplayHeight = ini.GetNum<int>("Display", "Height", 600);
+		LeftHandMouse = ini.GetString("Input", "MouseInputHand", "right") == "left";
 #else
 		int ColorBit = 0;
 		DxLib::GetScreenState(&DisplayWidth, &DisplayHeight, &ColorBit);
@@ -20,6 +21,7 @@ namespace Core {
 	}
 #ifdef _WINDOWS
 	HINSTANCE InsanceHandle;
+	bool LeftHandMouse;
 	int MessageBox(LPCSTR lpMessage, LPCSTR Caption, const DWORD dwStyle) {
 		MSGBOXPARAMSA mbp{};
 		mbp.cbSize = sizeof(mbp);

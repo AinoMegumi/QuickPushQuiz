@@ -10,6 +10,7 @@ namespace Core {
 	void LoadGameConfig();
 #ifdef _WINDOWS
 	extern HINSTANCE InsanceHandle;
+	extern bool LeftHandMouse;
 	int MessageBox(LPCSTR lpMessage, LPCSTR Caption, const DWORD dwStyle);
 #endif
 }
