@@ -171,6 +171,7 @@
     <ClCompile Include="..\src\QuizData.cpp" />
     <ClCompile Include="ApplicationCurrentDirectoryManager.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="MouseController.cpp" />
     <ClCompile Include="Win32Exception.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -190,6 +191,7 @@
     <ClInclude Include="CppIniRead.hpp" />
     <ClInclude Include="IniData.hpp" />
     <ClInclude Include="KeyboardController.hpp" />
+    <ClInclude Include="MouseController.hpp" />
     <ClInclude Include="Split.hpp" />
     <ClInclude Include="Win32Exception.hpp" />
   </ItemGroup>
