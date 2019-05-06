@@ -20,29 +20,29 @@ DxGraphic& DxGraphic::operator = (DxGraphic&& d) noexcept {
 	return *this;
 }
 
-void DxGraphic::Graph(const Coordinate LeftTop, const bool Trans) const noexcept {
+void DxGraphic::Graph(const Coordinate::Absolute LeftTop, const bool Trans) const noexcept {
 	DxLib::DrawGraph(LeftTop.x, LeftTop.y, this->Handle, Trans ? TRUE : FALSE);
 }
 
-void DxGraphic::Graph(const Coordinate LeftTop, const Coordinate RightBottom, const bool Trans) const noexcept {
+void DxGraphic::Graph(const Coordinate::Absolute LeftTop, const Coordinate::Absolute RightBottom, const bool Trans) const noexcept {
 	DxLib::DrawExtendGraph(LeftTop.x, LeftTop.y, RightBottom.x, RightBottom.y, this->Handle, Trans ? TRUE : FALSE);
 }
 
-Coordinate DxGraphic::GetGraphSize() const noexcept {
-	Coordinate Size{};
-	return -1 == DxLib::GetGraphSize(this->Handle, &Size.x, &Size.y) ? Coordinate(0, 0) : Size;
+Coordinate::Absolute DxGraphic::GetGraphSize() const noexcept {
+	Coordinate::Absolute Size{};
+	return -1 == DxLib::GetGraphSize(this->Handle, &Size.x, &Size.y) ? Coordinate::Absolute(0, 0) : Size;
 }
 
 void GraphicManager::AddGraphic(const std::string& Key, const std::string& FilePath) {
 	this->GraphicDataBuf.emplace(Key, DxGraphic(FilePath));
 }
 
-void GraphicManager::Graph(const std::string& Key, const Coordinate LeftTop, const Coordinate RightBottom, const bool Trans) const noexcept {
+void GraphicManager::Graph(const std::string& Key, const Coordinate::Absolute LeftTop, const Coordinate::Absolute RightBottom, const bool Trans) const noexcept {
 	if (RightBottom.x == -1 && RightBottom.y == -1)	this->GraphicDataBuf.at(Key).Graph(LeftTop, Trans);
 	else if (RightBottom.x != -1 && RightBottom.y != -1) this->GraphicDataBuf.at(Key).Graph(LeftTop, RightBottom, Trans);
 	else {
-		const Coordinate SizeData = this->GraphicDataBuf.at(Key).GetGraphSize();
-		Coordinate GraphRightBottom = RightBottom;
+		const Coordinate::Absolute SizeData = this->GraphicDataBuf.at(Key).GetGraphSize();
+		Coordinate::Absolute GraphRightBottom = RightBottom;
 		if (RightBottom.x == -1) GraphRightBottom.x = SizeData.x;
 		if (RightBottom.y == -1) GraphRightBottom.y = SizeData.y;
 		this->GraphicDataBuf.at(Key).Graph(GraphRightBottom, Trans);

@@ -1,12 +1,12 @@
 ﻿#pragma once
-#include "Coordinate.hpp"
+#include "Coordinate::Absolute.hpp"
 
 class GameController {
 protected:
-	Coordinate Current;
+	Coordinate::Absolute Current;
 public:
 	GameController() : Current() {}
 	virtual void UpdateCurrentPos() = 0;
 	virtual int Clicked() = 0;
-	Coordinate GetCurrentPos() const noexcept { return this->Current; }
+	Coordinate::Absolute GetCurrentPos() const noexcept { return this->Current; }
 };
