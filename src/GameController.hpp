@@ -1,5 +1,5 @@
 ﻿#pragma once
-#include "Coordinate::Absolute.hpp"
+#include "Coordinate.hpp"
 
 class GameController {
 protected:
