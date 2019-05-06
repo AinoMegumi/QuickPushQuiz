@@ -51,9 +51,6 @@
     <ClCompile Include="..\src\MainProcess.cpp">
       <Filter>src\GameCore</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\Coordinate.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Win32Exception.hpp">

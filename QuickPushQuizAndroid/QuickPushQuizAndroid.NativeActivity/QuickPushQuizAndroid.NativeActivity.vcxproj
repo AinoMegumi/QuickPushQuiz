@@ -259,7 +259,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\Coordinate.cpp" />
     <ClCompile Include="..\..\src\Core.cpp" />
     <ClCompile Include="..\..\src\DxGraphic.cpp" />
     <ClCompile Include="..\..\src\DxInit.cpp" />
