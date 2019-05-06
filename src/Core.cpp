@@ -8,7 +8,7 @@
 namespace Core {
 	int DisplayWidth;
 	int DisplayHeight;
-	void LoadScreenSizeInfo() {
+	void LoadGameConfig() {
 #ifdef _WINDOWS
 		const IniReadA ini(".\\System\\config.ini");
 		DisplayWidth = ini.GetNum<int>("Display", "Width", 800);

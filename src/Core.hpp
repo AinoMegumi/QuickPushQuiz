@@ -7,7 +7,7 @@
 namespace Core {
 	extern int DisplayWidth;
 	extern int DisplayHeight;
-	void LoadScreenSizeInfo();
+	void LoadGameConfig();
 #ifdef _WINDOWS
 	extern HINSTANCE InsanceHandle;
 	int MessageBox(LPCSTR lpMessage, LPCSTR Caption, const DWORD dwStyle);
